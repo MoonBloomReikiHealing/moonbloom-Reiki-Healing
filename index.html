@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moonbloom Healing — Online Reiki Sessions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #fdf8f4;
+    --blush: #f5e6e0;
+    --lavender: #c9b8e8;
+    --lavender-deep: #9d87d4;
+    --sage: #a8c4a2;
+    --midnight: #1a1530;
+    --midnight-soft: #2a2245;
+    --text-dark: #2c2440;
+    --text-mid: #6b5f80;
+    --text-light: #9d8fb0;
+    --gold: #c9a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(253,248,244,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid rgba(201,184,232,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--text-dark);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--lavender-deep); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--lavender-deep); }
+
+  .nav-book {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.4rem;
+    border: 1px solid var(--lavender-deep);
+    color: var(--lavender-deep);
+    text-decoration: none;
+    border-radius: 2rem;
+    transition: all 0.2s;
+  }
+
+  .nav-book:hover {
+    background: var(--lavender-deep);
+    color: white;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,184,232,0.18) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .mandala-wrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 2.5rem;
+  }
+
+  .mandala-wrap svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ring-1 { animation: spin 60s linear infinite; transform-origin: 120px 120px; }
+  .ring-2 { animation: spin 40s linear infinite reverse; transform-origin: 120px 120px; }
+  .ring-3 { animation: spin 80s linear infinite; transform-origin: 120px 120px; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ring-1, .ring-2, .ring-3 { animation: none; }
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--lavender-deep);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    background: var(--midnight);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover {
+    background: var(--midnight-soft);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    border: 1px solid var(--text-mid);
+    color: var(--text-mid);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 1rem;
+    transition: all 0.25s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--lavender), transparent);
+    animation: scrollpulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollpulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+  .container-sm { max-width: 680px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em { font-style: italic; color: var(--lavender-deep); }
+
+  /* ABOUT */
+  #about { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lotus-wrap {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: var(--blush);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+
+  .certifications {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .cert-pill {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--lavender);
+    border-radius: 2rem;
+    color: var(--lavender-deep);
+  }
+
+  /* WHAT IS REIKI */
+  #reiki {
+    background: var(--midnight);
+    color: var(--cream);
+  }
+
+  #reiki .section-label { color: var(--lavender); }
+  #reiki h2 { color: var(--cream); }
+  #reiki h2 em { color: var(--lavender); }
+
+  .reiki-intro {
+    font-size: 1.15rem;
+    color: rgba(253,248,244,0.75);
+    line-height: 1.9;
+    margin-bottom: 3rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .benefit-card {
+    padding: 1.75rem;
+    border: 0.5px solid rgba(201,184,232,0.2);
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .benefit-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--lavender);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-card p {
+    font-size: 0.9rem;
+    color: rgba(253,248,244,0.6);
+    line-height: 1.7;
+  }
+
+  /* SERVICES */
+  #services { background: var(--blush); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: var(--cream);
+    border-radius: 1.25rem;
+    padding: 2rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .service-card:hover { transform: translateY(-3px); }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lavender), var(--sage));
+  }
+
+  .service-card.featured::before {
+    background: linear-gradient(90deg, var(--lavender-deep), var(--gold));
+  }
+
+  .service-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-duration {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+
+  .service-desc {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--text-dark);
+  }
+
+  .price-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  /* HOW IT WORKS */
+  #how {
+    background: var(--cream);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender), var(--sage), transparent);
+  }
+
+  .step { text-align: center; }
+
+  .step-dot {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--blush);
+    border: 1.5px solid var(--lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.1rem;
+    color: var(--lavender-deep);
+  }
+
+  .step h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--blush); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .testimonial {
+    background: var(--cream);
+    border-radius: 1.25rem;
+    padding: 2rem;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial blockquote {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial cite {
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* BOOK */
+  #book {
+    background: var(--midnight);
+    text-align: center;
+  }
+
+  #book .section-label { color: var(--lavender); }
+  #book h2 { color: var(--cream); }
+  #book h2 em { color: var(--lavender); }
+
+  .book-sub {
+    color: rgba(253,248,244,0.65);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .book-note {
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    color: rgba(253,248,244,0.4);
+    letter-spacing: 0.04em;
+  }
+
+  .btn-light {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--cream);
+    color: var(--midnight);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+  }
+
+  .btn-light:hover {
+    background: var(--blush);
+    transform: translateY(-1px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--midnight-soft);
+    color: rgba(253,248,244,0.5);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo span { color: var(--lavender); }
+
+  footer p {
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+
+  footer a {
+    color: var(--lavender);
+    text-decoration: none;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 1.25rem 0;
+    font-size: 0.8rem;
+  }
+
+  .divider-ornament {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--lavender);
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .lotus-wrap { width: 200px; height: 200px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    h1 { font-size: 2.8rem; }
+    .mandala-wrap { width: 180px; height: 180px; }
+    .ring-1, .ring-2, .ring-3 { transform-origin: 90px 90px; }
+
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Moon<span>bloom</span> Healing</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Sessions</a></li>
+    <li><a href="#how">How it works</a></li>
+  </ul>
+  <a href="#book" class="nav-book">Book a session</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+
+  <div class="mandala-wrap">
+    <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer petals -->
+      <g class="ring-1">
+        <circle cx="120" cy="40" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="183" cy="78" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="183" cy="162" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="120" cy="200" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="57" cy="162" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <circle cx="57" cy="78" r="12" stroke="#c9b8e8" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- connecting lines -->
+        <line x1="120" y1="40" x2="183" y2="78" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="183" y1="78" x2="183" y2="162" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="183" y1="162" x2="120" y2="200" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="120" y1="200" x2="57" y2="162" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="57" y1="162" x2="57" y2="78" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+        <line x1="57" y1="78" x2="120" y2="40" stroke="#c9b8e8" stroke-width="0.5" opacity="0.3"/>
+      </g>
+
+      <!-- Middle ring -->
+      <g class="ring-2">
+        <circle cx="120" cy="120" r="55" stroke="#a8c4a2" stroke-width="0.7" fill="none" stroke-dasharray="4 6" opacity="0.6"/>
+        <circle cx="120" cy="65" r="7" fill="#a8c4a2" opacity="0.25"/>
+        <circle cx="168" cy="92" r="7" fill="#a8c4a2" opacity="0.25"/>
+        <circle cx="168" cy="148" r="7" fill="#a8c4a2" opacity="0.25"/>
+        <circle cx="120" cy="175" r="7" fill="#a8c4a2" opacity="0.25"/>
+        <circle cx="72" cy="148" r="7" fill="#a8c4a2" opacity="0.25"/>
+        <circle cx="72" cy="92" r="7" fill="#a8c4a2" opacity="0.25"/>
+      </g>
+
+      <!-- Inner geometry -->
+      <g class="ring-3">
+        <circle cx="120" cy="120" r="30" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.45"/>
+        <!-- inner triangle up -->
+        <polygon points="120,90 146,135 94,135" stroke="#9d87d4" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- inner triangle down -->
+        <polygon points="120,150 94,105 146,105" stroke="#9d87d4" stroke-width="0.8" fill="none" opacity="0.5"/>
+      </g>
+
+      <!-- Centre -->
+      <circle cx="120" cy="120" r="8" fill="#c9b8e8" opacity="0.7"/>
+      <circle cx="120" cy="120" r="3" fill="#9d87d4" opacity="0.9"/>
+
+      <!-- Outer boundary -->
+      <circle cx="120" cy="120" r="112" stroke="#c9b8e8" stroke-width="0.5" fill="none" opacity="0.2" stroke-dasharray="2 8"/>
+    </svg>
+  </div>
+
+  <p class="eyebrow">Online Reiki healing · UK &amp; worldwide</p>
+  <h1>Restore your <em>energy,</em><br>reclaim your peace</h1>
+  <p class="hero-sub">Distance Reiki sessions held gently online — for those who feel called to slow down, reconnect, and heal from within.</p>
+  <div>
+    <a href="#book" class="btn-primary">Book a session</a>
+    <a href="#about" class="btn-ghost">Learn more</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-symbol">
+        <div class="lotus-wrap">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width="180" height="180">
+            <!-- Lotus petals -->
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="#c9b8e8" opacity="0.4"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="none" stroke="#9d87d4" stroke-width="0.8" opacity="0.7"/>
+            <!-- Left petals -->
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="#a8c4a2" opacity="0.3" transform="rotate(-30 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="none" stroke="#a8c4a2" stroke-width="0.8" opacity="0.6" transform="rotate(-30 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="#a8c4a2" opacity="0.2" transform="rotate(-60 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="none" stroke="#a8c4a2" stroke-width="0.8" opacity="0.4" transform="rotate(-60 100 140)"/>
+            <!-- Right petals -->
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="#c9b8e8" opacity="0.3" transform="rotate(30 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="none" stroke="#9d87d4" stroke-width="0.8" opacity="0.6" transform="rotate(30 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="#c9b8e8" opacity="0.2" transform="rotate(60 100 140)"/>
+            <ellipse cx="100" cy="110" rx="18" ry="40" fill="none" stroke="#9d87d4" stroke-width="0.8" opacity="0.4" transform="rotate(60 100 140)"/>
+            <!-- Centre -->
+            <circle cx="100" cy="110" r="12" fill="#c9a96e" opacity="0.35"/>
+            <circle cx="100" cy="110" r="5" fill="#9d87d4" opacity="0.7"/>
+            <!-- Water line -->
+            <path d="M30 148 Q65 140 100 148 Q135 156 170 148" stroke="#c9b8e8" stroke-width="1" fill="none" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">About your practitioner</span>
+        <h2>Healing that <em>meets you</em><br>where you are</h2>
+        <p>I'm a certified Reiki practitioner based in the UK, and I created Moonbloom Healing as a gentle sanctuary — a space where you can pause, breathe, and allow your body's natural wisdom to come forward.</p>
+        <p>My sessions are held online via video call, which means the healing comes to you. Whether you're curled up in your favourite chair or resting in bed, distance Reiki is just as powerful as in-person work.</p>
+        <p>I believe in healing that honours the whole of you — your nervous system, your energy, your seasons of change.</p>
+        <div class="certifications">
+          <span class="cert-pill">Reiki Level II</span>
+          <span class="cert-pill">Distance healing</span>
+          <span class="cert-pill">Energy work</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS REIKI -->
+<section id="reiki">
+  <div class="container">
+    <span class="section-label">What is Reiki?</span>
+    <h2>Ancient energy, <em>modern healing</em></h2>
+    <p class="reiki-intro">Reiki is a Japanese energy healing practice that works with the body's natural life-force energy. By clearing blockages and restoring flow, Reiki supports deep relaxation, emotional release, and holistic wellbeing — all from the comfort of your home.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🌙</div>
+        <h3>Deep relaxation</h3>
+        <p>Reiki activates the parasympathetic nervous system, inviting a profound state of rest that your body uses to heal itself.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✨</div>
+        <h3>Emotional release</h3>
+        <p>Stored stress, grief, and anxiety can begin to soften and move as your energy centres come back into balance.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌿</div>
+        <h3>Clarity &amp; calm</h3>
+        <p>Many clients find a renewed sense of clarity and inner peace following sessions — a quiet knowing of the right next step.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <span class="section-label">Sessions</span>
+    <h2>Choose your <em>healing space</em></h2>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-tag">Introductory</p>
+        <p class="service-name">Soft Landing</p>
+        <p class="service-duration">30 minutes</p>
+        <p class="service-desc">A gentle introduction to Reiki — perfect if you're curious but new to energy healing. Includes a short consultation and closing reflection.</p>
+        <div class="service-price">
+          <span class="price-amount">£35</span>
+          <span class="price-label">per session</span>
+        </div>
+      </div>
+
+      <div class="service-card featured">
+        <p class="service-tag">Most popular</p>
+        <p class="service-name">Full Bloom</p>
+        <p class="service-duration">60 minutes</p>
+        <p class="service-desc">A full Reiki session with intention setting, deep energy work across all chakras, and a personalised closing message with insights from your session.</p>
+        <div class="service-price">
+          <span class="price-amount">£60</span>
+          <span class="price-label">per session</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <p class="service-tag">Deep healing</p>
+        <p class="service-name">Moonrise</p>
+        <p class="service-duration">90 minutes</p>
+        <p class="service-desc">An extended, deeply immersive session for those in a significant period of transition, grief, or deep restoration. Space for everything that needs to be held.</p>
+        <div class="service-price">
+          <span class="price-amount">£85</span>
+          <span class="price-label">per session</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <span class="section-label">The process</span>
+    <h2>Simple, <em>seamless</em> &amp; sacred</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <h3>Book &amp; pay</h3>
+        <p>Choose your session, pick a time that works for you, and pay securely online.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <h3>Receive your link</h3>
+        <p>You'll get a confirmation email with your video call link and a short preparation guide.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <h3>Settle in</h3>
+        <p>Find a comfortable spot, perhaps with a blanket. No special equipment needed — just yourself.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <h3>Receive &amp; rest</h3>
+        <p>I'll hold the space and channel healing energy. Afterwards you'll receive a written reflection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label">Kind words</span>
+    <h2>How clients have <em>felt</em></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I wasn't sure what to expect from a distance session, but I felt a warmth move through me within minutes. I cried, I laughed, and I slept the best I had in months."</blockquote>
+        <cite>— Sarah M., Edinburgh</cite>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I've been carrying grief for two years. After my Moonrise session I felt lighter than I had in so long. Something genuinely shifted. Absolutely recommend."</blockquote>
+        <cite>— Jen R., Manchester</cite>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The written reflection she sends afterwards is so beautiful and accurate — it's like she truly reads your energy. I now book monthly as part of my self-care."</blockquote>
+        <cite>— Clare B., London</cite>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was deeply sceptical. I'm now a complete convert. There's something so real and nourishing about these sessions. The space held feels genuinely sacred."</blockquote>
+        <cite>— Aoife T., Dublin</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book">
+  <div class="container-sm">
+    <span class="section-label">Ready when you are</span>
+    <h2>Begin your <em>healing journey</em></h2>
+    <p class="book-sub">Sessions run online via video call, available to anyone in the UK and worldwide. Book at a time that feels right for you.</p>
+    <a href="https://cal.com" class="btn-light">Book your session</a>
+    <p class="book-note">Secure booking &amp; payment · Instant confirmation · Easy rescheduling</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Moon<span>bloom</span> Healing</p>
+  <div class="divider-ornament">· ✦ ·</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Sessions</a>
+    <a href="#how">How it works</a>
+    <a href="mailto:hello@moonbloomhealing.co.uk">hello@moonbloomhealing.co.uk</a>
+  </div>
+  <p>© 2026 Moonbloom Healing · moonbloomhealing.co.uk</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">Distance Reiki is a complementary practice and does not replace medical treatment.</p>
+</footer>
+
+</body>
+</html>
