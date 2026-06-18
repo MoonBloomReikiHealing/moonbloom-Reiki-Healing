@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Moonbloom Reiki Healing</title>
+<meta name="description" content="Meet your Reiki practitioner — an empathic healer, Clairvoyant and Clairsentient channel who works with sacred symbols, spirit guides, and ancestral energy to support deep energetic restoration.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #fdf8f4;
+    --blush: #f5e6e0;
+    --lavender: #c9b8e8;
+    --lavender-deep: #9d87d4;
+    --sage: #a8c4a2;
+    --midnight: #1a1530;
+    --midnight-soft: #2a2245;
+    --text-dark: #2c2440;
+    --text-mid: #6b5f80;
+    --text-light: #9d8fb0;
+    --gold: #c9a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(26,21,48,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid rgba(201,184,232,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--lavender); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(253,248,244,0.6);
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover, nav ul a.active { color: var(--lavender); }
+
+  .nav-book {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.4rem;
+    border: 1px solid var(--lavender);
+    color: var(--lavender);
+    text-decoration: none;
+    border-radius: 2rem;
+    transition: all 0.2s;
+  }
+
+  .nav-book:hover {
+    background: var(--lavender);
+    color: var(--midnight);
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10rem 2rem 6rem;
+    background: var(--midnight);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(157,135,212,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    top: 30%; right: 10%;
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  #hero h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+  }
+
+  #hero h1 em {
+    font-style: italic;
+    color: var(--lavender);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(253,248,244,0.55);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.85;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sacred-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+    margin: 2rem auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+  .container-sm { max-width: 700px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em { font-style: italic; color: var(--lavender-deep); }
+
+  /* WHO I AM */
+  #who {
+    background: var(--cream);
+  }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .who-visual {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .practitioner-orb {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #e8dff5, #c9b8e8 40%, #9d87d4 70%, var(--midnight-soft));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(157,135,212,0.25);
+  }
+
+  .practitioner-orb::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,184,232,0.3);
+  }
+
+  .practitioner-orb::before {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(201,184,232,0.15);
+    animation: orb-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .practitioner-orb::before { animation: none; }
+  }
+
+  .gift-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .gift-badge {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--lavender);
+    border-radius: 2rem;
+    color: var(--lavender-deep);
+    background: rgba(201,184,232,0.08);
+  }
+
+  .who-text p {
+    color: var(--text-mid);
+    margin-bottom: 1.4rem;
+    font-size: 1.02rem;
+    line-height: 1.9;
+  }
+
+  .who-text p:last-child { margin-bottom: 0; }
+
+  /* ENERGETIC FOUNDATION */
+  #foundation {
+    background: var(--midnight);
+    color: var(--cream);
+  }
+
+  #foundation .section-label { color: var(--lavender); }
+  #foundation h2 { color: var(--cream); }
+  #foundation h2 em { color: var(--lavender); }
+
+  .foundation-text {
+    font-size: 1.08rem;
+    color: rgba(253,248,244,0.72);
+    line-height: 1.95;
+    max-width: 760px;
+  }
+
+  .foundation-text p { margin-bottom: 1.5rem; }
+  .foundation-text p:last-child { margin-bottom: 0; }
+
+  .symbols-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+  }
+
+  .symbol-item {
+    flex: 1;
+    min-width: 180px;
+    padding: 1.75rem;
+    border: 0.5px solid rgba(201,184,232,0.2);
+    border-radius: 1rem;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .symbol-glyph {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .symbol-item h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--lavender);
+    margin-bottom: 0.4rem;
+  }
+
+  .symbol-item p {
+    font-size: 0.88rem;
+    color: rgba(253,248,244,0.5);
+    line-height: 1.7;
+  }
+
+  /* WHAT WE ADDRESS */
+  #address {
+    background: var(--blush);
+  }
+
+  .address-intro {
+    font-size: 1.08rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    max-width: 680px;
+    margin-bottom: 3.5rem;
+  }
+
+  .clearings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .clearing-card {
+    background: var(--cream);
+    border-radius: 1.25rem;
+    padding: 2rem 1.75rem;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clearing-card:hover { transform: translateY(-2px); }
+
+  .clearing-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--lavender), var(--sage));
+    opacity: 0.5;
+  }
+
+  .clearing-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .clearing-card h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+
+  .clearing-card p {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* INVISIBLE WEIGHT */
+  #weight {
+    background: var(--cream);
+    text-align: center;
+  }
+
+  .weight-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .pull-quote {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--lavender);
+    opacity: 0.4;
+    position: absolute;
+    top: -1.5rem;
+    left: -1.5rem;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  .weight-body {
+    color: var(--text-mid);
+    font-size: 1.02rem;
+    line-height: 1.9;
+    text-align: left;
+  }
+
+  .weight-body p { margin-bottom: 1.3rem; }
+  .weight-body p:last-child { margin-bottom: 0; }
+
+  .landscape-note {
+    margin-top: 3rem;
+    padding: 2rem 2.5rem;
+    background: var(--blush);
+    border-radius: 1rem;
+    border-left: 3px solid var(--lavender);
+    text-align: left;
+  }
+
+  .landscape-note p {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  /* SPACE CLEARING */
+  #space {
+    background: var(--midnight);
+    color: var(--cream);
+  }
+
+  #space .section-label { color: var(--lavender); }
+  #space h2 { color: var(--cream); }
+  #space h2 em { color: var(--gold); }
+
+  .space-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .space-text p {
+    font-size: 1.02rem;
+    color: rgba(253,248,244,0.7);
+    line-height: 1.9;
+    margin-bottom: 1.3rem;
+  }
+
+  .space-text p:last-child { margin-bottom: 0; }
+
+  .space-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .space-orb-wrap {
+    position: relative;
+    width: 260px;
+    height: 260px;
+  }
+
+  .space-orb {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, rgba(201,169,110,0.3), rgba(157,135,212,0.15) 50%, transparent);
+    border: 1px solid rgba(201,169,110,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .space-offerings {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .space-pill {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid rgba(201,169,110,0.35);
+    border-radius: 2rem;
+    color: var(--gold);
+    background: rgba(201,169,110,0.07);
+  }
+
+  /* BOOK CTA */
+  #cta {
+    background: var(--blush);
+    text-align: center;
+  }
+
+  .cta-inner { max-width: 560px; margin: 0 auto; }
+
+  #cta .section-label { color: var(--lavender-deep); }
+
+  #cta h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  #cta h2 em { font-style: italic; color: var(--lavender-deep); }
+
+  .cta-sub {
+    color: var(--text-mid);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    background: var(--midnight);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    margin-right: 0.75rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--midnight-soft);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.9rem 2.4rem;
+    border: 1px solid var(--text-mid);
+    color: var(--text-mid);
+    text-decoration: none;
+    border-radius: 3rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--text-dark);
+    color: var(--text-dark);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--midnight-soft);
+    color: rgba(253,248,244,0.5);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo span { color: var(--lavender); }
+
+  footer p {
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+
+  footer a {
+    color: var(--lavender);
+    text-decoration: none;
+  }
+
+  footer a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 1.25rem 0;
+    font-size: 0.8rem;
+  }
+
+  .divider-ornament {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--lavender);
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+
+    #hero { padding: 8rem 1.5rem 4rem; min-height: 60vh; }
+
+    .who-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .who-visual { position: static; }
+    .practitioner-orb { width: 200px; height: 200px; }
+
+    .clearings-grid { grid-template-columns: 1fr; }
+    .space-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .space-visual { display: none; }
+    .symbols-row { gap: 1rem; }
+
+    section { padding: 4rem 1.5rem; }
+
+    .pull-quote::before { display: none; }
+    .pull-quote { font-size: 1.4rem; }
+
+    .btn-primary { margin-right: 0; margin-bottom: 0.75rem; }
+    .btn-ghost { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Moon<span>bloom</span> Healing</a>
+  <ul>
+    <li><a href="index.html#services">Sessions</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#how">How it works</a></li>
+  </ul>
+  <a href="index.html#book" class="nav-book">Book a session</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <p class="eyebrow">About your practitioner</p>
+  <h1>A channel for<br><em>universal healing</em></h1>
+  <div class="sacred-line"></div>
+  <p class="hero-sub">Empathic healer. Clairvoyant channel. A bridge between the seen and unseen — in devoted service to your restoration.</p>
+</section>
+
+<!-- WHO I AM -->
+<section id="who">
+  <div class="container">
+    <div class="who-grid">
+      <div class="who-visual">
+        <div class="practitioner-orb">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80" opacity="0.5">
+            <circle cx="60" cy="60" r="50" stroke="white" stroke-width="0.5" stroke-dasharray="3 6"/>
+            <circle cx="60" cy="60" r="35" stroke="white" stroke-width="0.5" opacity="0.6"/>
+            <circle cx="60" cy="60" r="20" stroke="white" stroke-width="0.8" opacity="0.4"/>
+            <circle cx="60" cy="60" r="6" fill="white" opacity="0.6"/>
+            <line x1="60" y1="10" x2="60" y2="110" stroke="white" stroke-width="0.4" opacity="0.3"/>
+            <line x1="10" y1="60" x2="110" y2="60" stroke="white" stroke-width="0.4" opacity="0.3"/>
+            <line x1="18" y1="18" x2="102" y2="102" stroke="white" stroke-width="0.4" opacity="0.2"/>
+            <line x1="102" y1="18" x2="18" y2="102" stroke="white" stroke-width="0.4" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="gift-badges">
+          <span class="gift-badge">Clairvoyant</span>
+          <span class="gift-badge">Clairsentient</span>
+          <span class="gift-badge">Empathic Channel</span>
+          <span class="gift-badge">Reiki Practitioner</span>
+        </div>
+      </div>
+
+      <div class="who-text">
+        <span class="section-label">Who I am</span>
+        <h2>Healer, channel, <em>empath</em></h2>
+
+        <p>I am a Reiki practitioner and energy healer — a channel for the universal life force that flows through all of creation. My work lives at the intersection of ancient healing wisdom and the very real, very human experience of being alive in a world that asks a great deal of us.</p>
+
+        <p>I am highly empathic, Clairvoyant, and Clairsentient. In practice, this means I receive visual impressions and imagery during sessions — and I feel into the emotional and energetic experience of those I work with as though it were my own. These are not techniques I have learned; they are the way I am inherently built, and they allow me to meet your energy with a depth and specificity that goes far beyond method alone.</p>
+
+        <p>I have a naturally open aura. For much of my life, this meant absorbing the energies of those around me — their emotions, their heaviness, their unspoken states — as readily as if they were my own. I know, firsthand, what it is to feel overwhelmed without knowing precisely why. To be weighed down by something invisible. To feel in need of a deep energetic detox. This understanding lives at the heart of my practice — not as theory, but as lived experience transformed into devoted service.</p>
+
+        <p>In every session, I work alongside Spirit: my own guides and ancestors, and the guides and ancestors of each person I serve. Healing in this way is never solitary. It is a gathering — a convergence of love from both sides of the veil — in quiet, powerful service of your restoration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENERGETIC FOUNDATION -->
+<section id="foundation">
+  <div class="container">
+    <span class="section-label">The energetic world</span>
+    <h2>The living field <em>beneath everything</em></h2>
+
+    <div class="foundation-text">
+      <p>At the root of all healing — across every tradition, every culture, every era of human wisdom — is a recognition that we are not merely physical beings. We are energy. Living, moving, responsive energy; woven into a vast and intelligent field that connects all things.</p>
+
+      <p>In Japan, the life force that animates us is called <em>Ki</em>. In China, <em>Chi</em>. In the Sanskrit tradition, <em>Prana</em>. Whatever name we give it, this current has been known across civilisations and centuries as the invisible force that flows through every living being — and that responds to everything we experience: our thoughts, our emotions, our relationships, our environment, and the stories we carry within us.</p>
+
+      <p>Reiki — from the Japanese <em>rei</em> (universal) and <em>ki</em> (life energy) — is the art and practice of consciously working with this field. As a Reiki practitioner, I serve as a conduit: I do not generate healing from within myself, but open as a clear and intentional channel for universal energy to flow, guided always by the highest good of the person I am working with.</p>
+
+      <p>I work with sacred Reiki symbols in my practice — ancient geometries of intention that amplify, direct, and deepen the healing energy in specific and profound ways. Each symbol carries its own quality of intelligence; together, they allow the work to reach precisely where it is needed. I also work in active collaboration with Spirit — my own guides and ancestral lineage, and the guides and ancestors of each client I serve. Healing in this way is never done alone. It is a convergence.</p>
+    </div>
+
+    <div class="symbols-row">
+      <div class="symbol-item">
+        <div class="symbol-glyph">☽</div>
+        <h3>Sacred Symbols</h3>
+        <p>Ancient Reiki symbols work as keys — amplifying energy, directing intention, and opening specific channels of healing with precision and depth.</p>
+      </div>
+      <div class="symbol-item">
+        <div class="symbol-glyph">✦</div>
+        <h3>Spirit Guides</h3>
+        <p>My guides, your guides, and our ancestral lineages are all invited into the healing space — a collaborative gathering in service of your wellbeing.</p>
+      </div>
+      <div class="symbol-item">
+        <div class="symbol-glyph">∞</div>
+        <h3>Distance Healing</h3>
+        <p>Universal energy transcends space and time entirely. Remote sessions are equally powerful to in-person work — healing has no physical boundary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE ADDRESS -->
+<section id="address">
+  <div class="container">
+    <span class="section-label">The energetic benefits</span>
+    <h2>What unfolds <em>in a session</em></h2>
+
+    <p class="address-intro">We are multi-layered beings. Beyond the physical body, we each have an energetic anatomy — a luminous auric field and a system of spinning energy centres called chakras — through which the life force of our lives flows, stagnates, or gets blocked. Everything we experience leaves its mark here: the love we have received and the grief we have carried, the traumas we have survived and the patterns we have quietly inherited. Each session works with what is present and ready to be addressed.</p>
+
+    <div class="clearings-grid">
+      <div class="clearing-card">
+        <span class="clearing-icon">🌀</span>
+        <h3>Chakra Rebalancing &amp; Re-energisation</h3>
+        <p>The seven primary chakras govern different aspects of our physical, emotional, and spiritual wellbeing. When these centres become depleted or blocked, the effects ripple through the entire system — affecting energy, mood, immunity, and sense of self. Reiki gently re-energises and restores each chakra to its natural state of flow and vitality.</p>
+      </div>
+
+      <div class="clearing-card">
+        <span class="clearing-icon">✨</span>
+        <h3>Auric Field Clearing</h3>
+        <p>Our aura is the luminous energy field that surrounds and interpenetrates the physical body — our first point of contact with the world. Over time, without clearing, the auric field accumulates energetic residue: old emotional debris, the projections of others, environmental impressions. Sessions work to clear, brighten, and strengthen this vital field, restoring clarity and healthy energetic boundaries.</p>
+      </div>
+
+      <div class="clearing-card">
+        <span class="clearing-icon">🌿</span>
+        <h3>Trauma &amp; Abuse Imprints</h3>
+        <p>Trauma does not only live in memory — it lives in the energetic body. Unresolved experiences of abuse, loss, shock, or prolonged stress leave their signatures in the field, where they can quietly shape our nervous system, our relationships, and our sense of self for years. Sessions work with compassionate, intelligent intention to soften, clear, and transform these imprints at the energetic root.</p>
+      </div>
+
+      <div class="clearing-card">
+        <span class="clearing-icon">🌙</span>
+        <h3>Ancestral Trauma Healing</h3>
+        <p>We inherit far more than physical genetics. Patterns of pain, unresolved grief, survival strategies, and emotional wounds can pass through the ancestral line — generation to generation — until someone in the lineage begins to consciously address them. Working with ancestral energy is one of the most far-reaching and quietly revolutionary aspects of this practice, with ripples felt across the lineage in both directions.</p>
+      </div>
+
+      <div class="clearing-card">
+        <span class="clearing-icon">⚡</span>
+        <h3>Energetic Cord Cutting</h3>
+        <p>We form energetic connections — cords — with people, places, relationships, and experiences throughout our lives. Many are nourishing and sustaining. Others, particularly those formed through pain, codependency, obligation, or unhealthy dynamics, become invisible threads that quietly drain our life force energy. Cutting these cords is an act of compassionate, clear self-reclamation.</p>
+      </div>
+
+      <div class="clearing-card">
+        <span class="clearing-icon">🔮</span>
+        <h3>Karmic Cord Release</h3>
+        <p>Some connections run deeper still — karmic threads from agreements, soul contracts, or entanglements that our soul is finally ready to dissolve. When the timing is aligned, these layers too can be gently and permanently released, freeing you to step more fully into the present chapter of your life, unencumbered by what has already been completed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE INVISIBLE WEIGHT -->
+<section id="weight">
+  <div class="container">
+    <div class="weight-inner">
+      <span class="section-label">The weight we carry</span>
+
+      <div class="pull-quote">
+        You may not be able to name what you're carrying — but you feel its weight.
+      </div>
+
+      <div class="weight-body">
+        <p>We all carry emotional and energetic material that sits just below the surface of conscious awareness — accumulated over this lifetime and beyond. Unconscious patterns, inherited beliefs, absorbed emotions, unprocessed experiences. You may simply feel "off." A persistent, low-level exhaustion that rest alone cannot fix. A fogginess. An inability to make decisions that once came easily. A sense of being weighed down by something invisible and unnameable.</p>
+
+        <p>This is often the energetic body asking for attention. Signalling that there are layers ready to be tended, cleared, and released. And it deserves to be heard.</p>
+
+        <p>As someone with a naturally open aura who has always absorbed the energies around me — the emotions, the heaviness, the unspoken states of others — I understand this experience from the inside. I know how overwhelming and depleting life can feel when you are carrying not only your own weight, but the weight of everyone around you. I also know how profoundly transformative it is when those layers begin to lift.</p>
+      </div>
+
+      <div class="landscape-note">
+        <p>One of the things I find most beautiful — and most humbling — about this work is that every person's energetic landscape is entirely unique. As distinct and individual as a fingerprint. There is no template, no formula. When I work with you, I read your specific field and respond to exactly what is present. The session belongs wholly to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACE & LAND CLEARINGS -->
+<section id="space">
+  <div class="container">
+    <div class="space-grid">
+      <div class="space-text">
+        <span class="section-label">New offering</span>
+        <h2>Space &amp; Land <em>Clearings</em></h2>
+
+        <p>Just as people hold and accumulate energy, so do the spaces we inhabit. Our homes, our land, the environments we move through — they absorb and retain the emotional and energetic residue of everything that has occurred within them.</p>
+
+        <p>Conflict, grief, stress, and the imprints of past occupants can all leave their mark in the energetic signature of a space, making it feel heavy, unsettled, or difficult to rest in. You may sense it without being able to articulate it — a room that never quite feels right, a house that feels dense despite your best efforts, land that carries something unresolved.</p>
+
+        <p>I offer energetic clearings for homes and land, working remotely with the same presence, intention, and depth that I bring to personal healing sessions. Whether you are moving into a new space and wish to begin fresh, navigating a difficult period and sensing that your home needs a reset, or have simply felt for some time that something is lingering — a space clearing can shift the energy of a place at its very root.</p>
+
+        <div class="space-offerings">
+          <span class="space-pill">Home clearings</span>
+          <span class="space-pill">Land clearings</span>
+          <span class="space-pill">Space blessings</span>
+          <span class="space-pill">Remote sessions</span>
+          <span class="space-pill">New home cleanse</span>
+        </div>
+      </div>
+
+      <div class="space-visual">
+        <div class="space-orb-wrap">
+          <div class="space-orb">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+              <!-- House outline -->
+              <path d="M100 40 L160 90 L160 165 L40 165 L40 90 Z" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.4"/>
+              <path d="M40 90 L100 40 L160 90" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.4"/>
+              <!-- Door -->
+              <rect x="85" y="130" width="30" height="35" stroke="#c9b8e8" stroke-width="0.7" fill="none" opacity="0.5"/>
+              <!-- Windows -->
+              <rect x="55" y="105" width="25" height="22" rx="2" stroke="#c9b8e8" stroke-width="0.7" fill="none" opacity="0.4"/>
+              <rect x="120" y="105" width="25" height="22" rx="2" stroke="#c9b8e8" stroke-width="0.7" fill="none" opacity="0.4"/>
+              <!-- Radiating lines -->
+              <line x1="100" y1="40" x2="100" y2="15" stroke="#c9a96e" stroke-width="0.5" opacity="0.3"/>
+              <line x1="160" y1="90" x2="180" y2="80" stroke="#c9a96e" stroke-width="0.5" opacity="0.3"/>
+              <line x1="40" y1="90" x2="20" y2="80" stroke="#c9a96e" stroke-width="0.5" opacity="0.3"/>
+              <!-- Stars/sparks -->
+              <circle cx="100" cy="12" r="2" fill="#c9a96e" opacity="0.6"/>
+              <circle cx="182" cy="78" r="1.5" fill="#c9b8e8" opacity="0.5"/>
+              <circle cx="18" cy="78" r="1.5" fill="#c9b8e8" opacity="0.5"/>
+              <circle cx="80" cy="20" r="1" fill="#c9a96e" opacity="0.4"/>
+              <circle cx="120" cy="20" r="1" fill="#c9a96e" opacity="0.4"/>
+              <!-- Outer circle -->
+              <circle cx="100" cy="100" r="90" stroke="#c9b8e8" stroke-width="0.4" fill="none" opacity="0.2" stroke-dasharray="3 8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <span class="section-label">Ready when you are</span>
+    <h2>Feel called to work <em>together?</em></h2>
+    <p class="cta-sub">Sessions are held online and are available to anyone in the UK and worldwide. Each one is unique — shaped entirely by what your energy field is ready to receive.</p>
+    <a href="index.html#book" class="btn-primary">Book a session</a>
+    <a href="index.html#services" class="btn-ghost">View offerings</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Moon<span>bloom</span> Healing</p>
+  <div class="divider-ornament">· ✦ ·</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Sessions</a>
+    <a href="about.html">About</a>
+    <a href="mailto:moonbloomreikihealing@gmail.com">moonbloomreikihealing@gmail.com</a>
+  </div>
+  <p>© 2026 Moonbloom Reiki Healing · moonbloomreikihealing@gmail.com</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">Reiki is a complementary practice and does not replace medical treatment.</p>
+</footer>
+
+</body>
+</html>

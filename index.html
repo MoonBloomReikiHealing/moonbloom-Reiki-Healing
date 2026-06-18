@@ -73,7 +73,7 @@
     transition: color 0.2s;
   }
 
-  nav ul a:hover { color: var(--lavender-deep); }
+  nav ul a:hover, nav ul a.active { color: var(--lavender-deep); }
 
   .nav-book {
     font-size: 0.82rem;
@@ -366,6 +366,35 @@
     margin-top: 3rem;
   }
 
+  .space-clearing-card {
+    grid-column: 1 / -1;
+    background: var(--midnight);
+    border-radius: 1.25rem;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.25rem;
+  }
+
+  .space-clearing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lavender), var(--gold));
+  }
+
+  .space-clearing-card .service-tag { color: var(--lavender); }
+  .space-clearing-card .service-name { color: var(--cream); }
+  .space-clearing-card .service-duration { color: rgba(253,248,244,0.4); }
+  .space-clearing-card .service-desc { color: rgba(253,248,244,0.65); }
+  .space-clearing-card .price-amount { color: var(--cream); }
+  .space-clearing-card .price-label { color: rgba(253,248,244,0.4); }
+
   .service-card {
     background: var(--cream);
     border-radius: 1.25rem;
@@ -630,6 +659,7 @@
     .lotus-wrap { width: 200px; height: 200px; }
     .benefits-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
+    .space-clearing-card { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr 1fr; }
     .steps::before { display: none; }
     .testimonials-grid { grid-template-columns: 1fr; }
@@ -648,7 +678,7 @@
 <nav>
   <a href="#hero" class="nav-logo">Moon<span>bloom</span> Healing</a>
   <ul>
-    <li><a href="#about">About</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="#services">Sessions</a></li>
     <li><a href="#how">How it works</a></li>
   </ul>
@@ -752,14 +782,16 @@
       <div class="about-text">
         <span class="section-label">About your practitioner</span>
         <h2>Healing that <em>meets you</em><br>where you are</h2>
-        <p>I'm a certified Reiki practitioner based in the UK, and I created Moonbloom Healing as a gentle sanctuary — a space where you can pause, breathe, and allow your body's natural wisdom to come forward.</p>
-        <p>My sessions are held online via video call, which means the healing comes to you. Whether you're curled up in your favourite chair or resting in bed, distance Reiki is just as powerful as in-person work.</p>
-        <p>I believe in healing that honours the whole of you — your nervous system, your energy, your seasons of change.</p>
+        <p>I am a Reiki practitioner and energy healer — a channel for the universal life force that flows through all of creation. I am highly empathic, Clairvoyant, and Clairsentient, able to receive imagery and feel into the energetic experience of those I work with. My sessions are held online, reaching you wherever you are in the world.</p>
+        <p>As someone with a naturally open aura, I understand deeply how overwhelming life can feel when we carry not only our own emotional weight, but the weight of others. This lived understanding is at the heart of everything I offer.</p>
+        <p>In every session, I work alongside sacred Reiki symbols and in collaboration with Spirit — my guides and ancestors, and yours — to support the deepest restoration possible.</p>
         <div class="certifications">
-          <span class="cert-pill">Reiki Level II</span>
+          <span class="cert-pill">Reiki Practitioner</span>
+          <span class="cert-pill">Clairvoyant</span>
+          <span class="cert-pill">Clairsentient</span>
           <span class="cert-pill">Distance healing</span>
-          <span class="cert-pill">Energy work</span>
         </div>
+        <p style="margin-top:1.5rem;"><a href="about.html" style="color:var(--lavender-deep);font-size:0.88rem;letter-spacing:0.04em;text-decoration:none;border-bottom:1px solid rgba(157,135,212,0.3);padding-bottom:1px;">Read the full story →</a></p>
       </div>
     </div>
   </div>
@@ -769,33 +801,35 @@
 <section id="reiki">
   <div class="container">
     <span class="section-label">What is Reiki?</span>
-    <h2>Ancient energy, <em>modern healing</em></h2>
-    <p class="reiki-intro">Reiki is a Japanese energy healing practice that works with the body's natural life-force energy. By clearing energetic blockages and restoring flow, Reiki supports deep balance, relaxation, emotional release, and holistic wellbeing — all from the comfort of your home.</p>
+    <h2>Universal energy, <em>ancient intelligence</em></h2>
+    <p class="reiki-intro">Reiki is rooted in a truth every healing tradition has known: that beneath the physical body, we exist as energy — and that this energy responds to everything we experience. Ki (Japanese), Chi (Chinese), Prana (Sanskrit): the same invisible, intelligent life force, by many names. When it flows freely, we feel well. When it stagnates or depletes, we feel it — sometimes as a vague "off" feeling, sometimes as exhaustion, fogginess, or a weight we cannot name. Reiki works at this energetic root, restoring flow, balance, and aliveness from within.</p>
 
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="benefit-icon">🌙</div>
-        <h3>Deep relaxation</h3>
-        <p>Reiki activates the parasympathetic nervous system, inviting a profound state of rest that your body uses to heal itself.</p>
+        <div class="benefit-icon">🌀</div>
+        <h3>Chakra rebalancing</h3>
+        <p>The seven energy centres of the body are re-energised and restored to natural flow — supporting vitality, emotional balance, and clarity at every level of your being.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon">✨</div>
-        <h3>Emotional release</h3>
-        <p>Stored stress, grief, and anxiety can begin to soften and move as your energy centres come back into balance.</p>
+        <h3>Auric field clearing</h3>
+        <p>The luminous field surrounding the body absorbs the energies of daily life. Sessions clear accumulated debris, strengthen energetic boundaries, and restore your aura's natural brightness.</p>
       </div>
       <div class="benefit-card">
-        <div class="benefit-icon">🌿</div>
-        <h3>Clarity &amp; calm</h3>
-        <p>Many clients find a renewed sense of clarity and inner peace following sessions — a quiet knowing of the right next step.</p>
+        <div class="benefit-icon">🌙</div>
+        <h3>Trauma &amp; cord release</h3>
+        <p>Energetic imprints of trauma, energetic cords formed through pain or obligation, and ancestral patterns are gently and intelligently addressed — allowing deep, lasting shifts.</p>
       </div>
     </div>
+
+    <p style="margin-top:2.5rem; text-align:center;"><a href="about.html#address" style="color:var(--lavender);font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(201,184,232,0.35);padding-bottom:2px;">Explore all the energetic benefits →</a></p>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
-    <span class="section-label">Sessions</span>
+    <span class="section-label">Sessions &amp; offerings</span>
     <h2>Choose your <em>healing space</em></h2>
 
     <div class="services-grid">
@@ -829,6 +863,23 @@
         <div class="service-price">
           <span class="price-amount">£85</span>
           <span class="price-label">per session</span>
+        </div>
+      </div>
+
+      <!-- Space & Land Clearing — New Offering -->
+      <div class="space-clearing-card">
+        <div>
+          <p class="service-tag">New offering</p>
+          <p class="service-name">Space &amp; Land Clearing</p>
+          <p class="service-duration">Remote · homes, land &amp; spaces</p>
+          <p class="service-desc">Spaces hold energy — the residue of past events, emotions, and occupants. Whether your home feels heavy, a room never quite feels right, or you're moving into a new space and wish to begin fresh, an energetic clearing works at the root of what is present. Conducted remotely, with the same depth and intention as a personal session.</p>
+        </div>
+        <div>
+          <div class="service-price" style="justify-content:flex-end; margin-bottom:0.75rem;">
+            <span class="price-amount">£55</span>
+            <span class="price-label">per clearing</span>
+          </div>
+          <a href="#book" class="btn-ghost" style="font-size:0.78rem; padding:0.5rem 1.2rem; white-space:nowrap; border-color:rgba(201,184,232,0.4); color:var(--lavender);">Book a clearing</a>
         </div>
       </div>
     </div>
@@ -902,9 +953,9 @@
   <div class="container-sm">
     <span class="section-label">Ready when you are</span>
     <h2>Begin your <em>healing journey</em></h2>
-    <p class="book-sub">Sessions run online via video call, available to anyone in the UK and worldwide. Book at a time that feels right for you.</p>
-    <a href="https://cal.com" class="btn-light">Book your session</a>
-    <p class="book-note">Secure booking &amp; payment · Instant confirmation · Easy rescheduling</p>
+    <p class="book-sub">Sessions are held online and are open to anyone in the UK and worldwide. Choose a time that feels right for you — payment is taken securely at the point of booking.</p>
+    <a href="https://cal.com/moonbloomhealing" class="btn-light">Book &amp; pay securely</a>
+    <p class="book-note">Secure online payment · Instant confirmation · Zoom link sent automatically</p>
   </div>
 </section>
 
@@ -913,10 +964,10 @@
   <p class="footer-logo">Moon<span>bloom</span> Healing</p>
   <div class="divider-ornament">· ✦ ·</div>
   <div class="footer-links">
-    <a href="#about">About</a>
+    <a href="about.html">About</a>
     <a href="#services">Sessions</a>
     <a href="#how">How it works</a>
-    <a href="mailto:hello@moonbloomhealing.co.uk">moonbloomreikihealing@gmail.com</a>
+    <a href="mailto:moonbloomreikihealing@gmail.com">moonbloomreikihealing@gmail.com</a>
   </div>
   <p>© 2026 Moonbloom Reiki Healing · moonbloomreikihealing@gmail.com</p>
   <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">Distance Reiki is a complementary practice and does not replace medical treatment.</p>
