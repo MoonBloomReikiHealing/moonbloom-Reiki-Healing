@@ -561,6 +561,73 @@
     letter-spacing: 0.04em;
   }
 
+  .booking-form {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: left;
+    background: rgba(253,248,244,0.06);
+    border: 1px solid rgba(201,184,232,0.22);
+    border-radius: 1.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-field.full { grid-column: 1 / -1; }
+
+  .form-field label {
+    color: rgba(253,248,244,0.72);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    border: 1px solid rgba(201,184,232,0.28);
+    border-radius: 0.8rem;
+    padding: 0.9rem 1rem;
+    background: rgba(26,21,48,0.58);
+    color: var(--cream);
+    font: inherit;
+    color-scheme: dark;
+  }
+
+  .form-field textarea { min-height: 115px; resize: vertical; }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: 2px solid var(--lavender);
+    outline-offset: 2px;
+    border-color: transparent;
+  }
+
+  .booking-form .btn-light {
+    border: 0;
+    cursor: pointer;
+    margin-top: 1.5rem;
+  }
+
+  .booking-form .form-help {
+    margin-top: 1rem;
+    color: rgba(253,248,244,0.48);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
   .btn-light {
     display: inline-block;
     padding: 1rem 2.8rem;
@@ -639,6 +706,9 @@
     .steps { grid-template-columns: 1fr 1fr; }
     .steps::before { display: none; }
     .testimonials-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-field.full { grid-column: auto; }
+    .booking-form { padding: 1.5rem; }
 
     h1 { font-size: 2.8rem; }
     .mandala-wrap { width: 180px; height: 180px; }
@@ -866,13 +936,13 @@
     <div class="steps">
       <div class="step">
         <div class="step-dot">1</div>
-        <h3>Book &amp; pay</h3>
-        <p>Choose your session, pick a time that works for you, and pay securely online.</p>
+        <h3>Request a session</h3>
+        <p>Choose your session and share the date and time that work best for you.</p>
       </div>
       <div class="step">
         <div class="step-dot">2</div>
-        <h3>Receive your link</h3>
-        <p>You'll get a confirmation email with your video call link and a short preparation guide.</p>
+        <h3>Confirm &amp; pay</h3>
+        <p>You'll receive availability and a secure payment link by email before your booking is confirmed.</p>
       </div>
       <div class="step">
         <div class="step-dot">3</div>
@@ -924,9 +994,53 @@
   <div class="container-sm">
     <span class="section-label">Ready when you are</span>
     <h2>Begin your <em>healing journey</em></h2>
-    <p class="book-sub">Sessions are held online and are open to anyone in the UK and worldwide. Choose a time that feels right for you — payment is taken securely at the point of booking.</p>
-    <a href="https://cal.com/moonbloomhealing" class="btn-light">Book &amp; pay securely</a>
-    <p class="book-note">Secure online payment · Instant confirmation · Zoom link sent automatically</p>
+    <p class="book-sub">Sessions are held online and are open worldwide. Send your preferred time below and you'll receive availability plus a secure payment link by email.</p>
+    <form class="booking-form" name="booking-request" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="booking-request">
+      <input type="hidden" name="subject" data-remove-prefix value="New MoonBloom booking request">
+      <p hidden>
+        <label>Do not fill this out: <input name="bot-field"></label>
+      </p>
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="booking-name">Name</label>
+          <input id="booking-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="booking-email">Email</label>
+          <input id="booking-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-field full">
+          <label for="booking-session">Session</label>
+          <select id="booking-session" name="session" required>
+            <option value="">Choose a session</option>
+            <option>Soft Landing — 30 minutes — £35</option>
+            <option>Full Bloom — 60 minutes — £60</option>
+            <option>Moonrise — 90 minutes — £85</option>
+            <option>Space &amp; Land Clearing — £85</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="booking-date">Preferred date</label>
+          <input id="booking-date" name="preferred-date" type="date" required>
+        </div>
+        <div class="form-field">
+          <label for="booking-time">Preferred time</label>
+          <input id="booking-time" name="preferred-time" type="time" required>
+        </div>
+        <div class="form-field full">
+          <label for="booking-timezone">Your city or time zone</label>
+          <input id="booking-timezone" name="time-zone" type="text" autocomplete="address-level2" placeholder="For example: London (BST)" required>
+        </div>
+        <div class="form-field full">
+          <label for="booking-note">Anything you'd like to share? <span aria-hidden="true">(optional)</span></label>
+          <textarea id="booking-note" name="message" placeholder="Share any scheduling needs or intentions for your session."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-light">Request my session</button>
+      <p class="form-help">No payment is taken on this form. After availability is confirmed, a private secure payment link and session details are sent to your email.</p>
+    </form>
+    <p class="book-note">Private request · Secure payment link by email · Booking confirmed personally</p>
   </div>
 </section>
 
