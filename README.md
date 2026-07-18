@@ -20,13 +20,13 @@ Configure these for Functions runtime in Netlify project settings:
 - `GOOGLE_SERVICE_ACCOUNT_EMAIL`: email address of a Google Cloud service account with Calendar API access.
 - `GOOGLE_PRIVATE_KEY`: private key belonging to that service account. Preserve its line breaks or use escaped `\n` characters.
 - `GOOGLE_CALENDAR_ID`: ID of the calendar that receives confirmed sessions.
-- `WHATSAPP_NUMBER`: the WhatsApp number in international format, including country code and without a leading zero. Spaces and a leading `+` are accepted.
+- `WHATSAPP_NUMBER`: the WhatsApp number in international format used by the geolocation endpoint. Spaces and a leading `+` are accepted.
 
 Share the destination Google Calendar with `GOOGLE_SERVICE_ACCOUNT_EMAIL` and grant permission to make changes to events. Enable the Google Calendar API for the service account's Google Cloud project. Verify the `BOOKING_FROM_EMAIL` domain or sender in Resend before accepting live bookings.
 
 The existing generic Netlify form-submission email can be disabled after the custom email is working to avoid duplicate owner notifications.
 
-An edge geolocation endpoint keeps UK and other visitors on GBP pricing while showing EUR pricing across Europe. If geolocation is unavailable, the site safely retains the existing GBP prices. The WhatsApp button remains hidden until `WHATSAPP_NUMBER` is configured.
+An edge geolocation endpoint keeps UK and other visitors on GBP pricing while showing EUR pricing across Europe. If geolocation is unavailable, the site safely retains the existing GBP prices. The floating WhatsApp prompt includes a direct static fallback so it remains visible even if the endpoint is temporarily unavailable.
 
 ## Local checks
 
