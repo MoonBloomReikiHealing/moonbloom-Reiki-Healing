@@ -4,7 +4,13 @@ import { db } from "../../db/index.js";
 import { bookings, type Booking } from "../../db/schema.js";
 import { createCalendarEvent } from "./_lib/calendar.mjs";
 import { requireEnv } from "./_lib/config.mjs";
-import { customerDecisionEmail, sendEmail } from "./_lib/email.mjs";
+import {
+  customerConfirmationEmail,
+  customerConfirmationText,
+  customerDeclineEmail,
+  customerDeclineText,
+  sendEmail,
+} from "./_lib/email.mjs";
 import { escapeHtml, sha256 } from "./_lib/security.mjs";
 
 type Decision = "confirm" | "decline";
@@ -103,7 +109,8 @@ export default async (req: Request, context: Context) => {
       to: declined.customerEmail,
       subject: "An update on your MoonBloom booking request",
       replyTo: requireEnv("BOOKING_OWNER_EMAIL"),
-      html: customerDecisionEmail(declined.customerName, false, declined.sessionName, declined.preferredDate, declined.preferredTime, declined.customerTimeZone),
+      html: customerDeclineEmail(declined.customerName),
+      text: customerDeclineText(declined.customerName),
     }).catch((error) => console.error("Unable to send decline email", error)));
     return completedPage(declined);
   }
@@ -124,6 +131,22 @@ export default async (req: Request, context: Context) => {
 
   try {
     const eventId = await createCalendarEvent(confirming);
+    const confirmationDetails = {
+      name: confirming.customerName,
+      session: confirming.sessionName,
+      date: confirming.preferredDate,
+      time: confirming.preferredTime,
+      timeZone: confirming.customerTimeZoneLabel || confirming.customerTimeZone,
+    };
+
+    await sendEmail({
+      to: confirming.customerEmail,
+      subject: "Your MoonBloom Reiki Session is Confirmed 🌙",
+      replyTo: requireEnv("BOOKING_OWNER_EMAIL"),
+      html: customerConfirmationEmail(confirmationDetails),
+      text: customerConfirmationText(confirmationDetails),
+    });
+
     const [confirmed] = await db.update(bookings).set({
       status: "confirmed",
       calendarEventId: eventId,
@@ -136,18 +159,12 @@ export default async (req: Request, context: Context) => {
       return latest ? completedPage(latest) : page("Booking unavailable", "<h1>Booking unavailable</h1>", 409);
     }
 
-    context.waitUntil(sendEmail({
-      to: confirmed.customerEmail,
-      subject: "Your MoonBloom session is confirmed",
-      replyTo: requireEnv("BOOKING_OWNER_EMAIL"),
-      html: customerDecisionEmail(confirmed.customerName, true, confirmed.sessionName, confirmed.preferredDate, confirmed.preferredTime, confirmed.customerTimeZone),
-    }).catch((error) => console.error("Unable to send confirmation email", error)));
     return completedPage(confirmed);
   } catch (error) {
     await db.update(bookings).set({ status: "pending", updatedAt: new Date() })
       .where(and(eq(bookings.id, confirming.id), eq(bookings.status, "confirming")));
     console.error("Unable to confirm booking", error);
-    return page("Calendar unavailable", `<p class="eyebrow">MoonBloom booking</p><h1>The calendar could not be updated</h1>${bookingDetails(confirming)}<p>No confirmation was recorded. Check the calendar integration settings and try this link again.</p>`, 502);
+    return page("Confirmation unavailable", `<p class="eyebrow">MoonBloom booking</p><h1>The booking could not be confirmed</h1>${bookingDetails(confirming)}<p>No confirmation was recorded. Check the calendar and email integration settings, then try this link again.</p>`, 502);
   }
 };
 
