@@ -1,0 +1,78 @@
+.pricing-region-note {
+  margin-top: 0.75rem;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.whatsapp-contact {
+  position: fixed;
+  right: 1.35rem;
+  bottom: 1.35rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem 1rem 0.72rem 0.78rem;
+  border: 1px solid rgba(253, 248, 244, 0.34);
+  border-radius: 999px;
+  background: #526d61;
+  box-shadow: 0 14px 38px rgba(20, 17, 32, 0.24);
+  color: #fffaf4;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-contact[hidden] {
+  display: none;
+}
+
+.whatsapp-contact svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
+  fill: currentColor;
+}
+
+.whatsapp-contact:hover,
+.whatsapp-contact:focus-visible {
+  background: #425c51;
+  box-shadow: 0 17px 44px rgba(20, 17, 32, 0.3);
+  color: #fffaf4;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.whatsapp-contact:focus-visible {
+  outline: 3px solid rgba(201, 184, 232, 0.75);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .whatsapp-contact {
+    right: 0.9rem;
+    bottom: 0.9rem;
+    padding: 0.72rem;
+  }
+
+  .whatsapp-contact span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-contact {
+    transition: none;
+  }
+}

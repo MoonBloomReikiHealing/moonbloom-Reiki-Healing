@@ -6,7 +6,7 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["node", "@netlify/functions"]
+    "types": ["node", "@netlify/functions", "@netlify/edge-functions"]
   },
-  "include": ["db/**/*.ts", "netlify/functions/**/*.mts", "drizzle.config.ts"]
+  "include": ["db/**/*.ts", "netlify/functions/**/*.mts", "netlify/edge-functions/**/*.ts", "drizzle.config.ts"]
 }
