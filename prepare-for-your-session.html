@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparing for Your Session | MoonBloom Reiki Healing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF3E7;
+    --peach: #F3DCC2;
+    --amber: #C7893D;
+    --deep-gold: #9C6B2E;
+    --brown: #4A3728;
+    --brown-soft: #6B5645;
+    --glow-outer: rgba(199,137,61,0.10);
+    --glow-inner: rgba(255,244,222,0.9);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--brown);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap{max-width: 720px; margin: 0 auto; padding: 0 28px 120px;}
+
+  /* HERO */
+  .hero{
+    position: relative;
+    padding: 100px 28px 90px;
+    text-align:center;
+    overflow: hidden;
+  }
+  .hero-glow{
+    position:absolute;
+    top:50%; left:50%;
+    width: 480px; height: 480px;
+    transform: translate(-50%,-50%);
+    border-radius:50%;
+    background: radial-gradient(circle, var(--glow-inner) 0%, var(--glow-outer) 45%, transparent 72%);
+    animation: breathe 7s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes breathe{
+    0%,100%{ transform: translate(-50%,-50%) scale(0.94); opacity:0.85; }
+    50%{ transform: translate(-50%,-50%) scale(1.06); opacity:1; }
+  }
+  .hero-content{ position:relative; z-index:1; }
+  .glyph{
+    width:64px; height:64px; margin: 0 auto 28px;
+    opacity:0.9;
+  }
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--deep-gold);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  h1{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size: clamp(28px, 5vw, 42px);
+    letter-spacing: 0.03em;
+    color: var(--brown);
+    margin: 0 0 22px;
+  }
+  .hero p{
+    max-width: 480px;
+    margin: 0 auto;
+    font-size: 18px;
+    color: var(--brown-soft);
+  }
+
+  /* DIVIDER */
+  .divider{
+    display:flex; align-items:center; gap:16px;
+    margin: 64px 0 44px;
+    color: var(--amber);
+  }
+  .divider::before, .divider::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--peach), transparent);
+  }
+  .divider span{
+    font-family:'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--deep-gold);
+    white-space:nowrap;
+  }
+
+  /* SECTION HEADS */
+  h2{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size: 22px;
+    letter-spacing:0.02em;
+    color: var(--brown);
+    margin: 0 0 26px;
+    text-align:center;
+  }
+
+  /* PREP LIST */
+  .prep-list{
+    display:grid;
+    gap: 20px;
+  }
+  .prep-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    background: rgba(255,255,255,0.4);
+    border: 1px solid var(--peach);
+    border-radius: 14px;
+    padding: 18px 22px;
+  }
+  .prep-icon{
+    font-size: 20px;
+    line-height:1;
+    margin-top:2px;
+  }
+  .prep-item strong{
+    font-family:'Jost', sans-serif;
+    font-weight:500;
+    color: var(--brown);
+    display:block;
+    margin-bottom:4px;
+    font-size: 16px;
+  }
+  .prep-item span.desc{
+    color: var(--brown-soft);
+    font-size: 15.5px;
+  }
+
+  /* RITUAL SECTION - signature element */
+  .ritual{
+    position:relative;
+    margin: 70px 0;
+    padding: 56px 36px;
+    border-radius: 28px;
+    background: radial-gradient(circle at 50% 0%, var(--peach) 0%, var(--cream) 70%);
+    border: 1px solid var(--peach);
+    text-align:center;
+  }
+  .ritual-orb{
+    width: 88px; height:88px;
+    margin: 0 auto 30px;
+    border-radius:50%;
+    background: radial-gradient(circle, #fff7ea 0%, var(--amber) 60%, transparent 100%);
+    box-shadow: 0 0 40px 10px rgba(199,137,61,0.35);
+    animation: pulse-orb 4.5s ease-in-out infinite;
+  }
+  @keyframes pulse-orb{
+    0%,100%{ transform: scale(1); box-shadow: 0 0 40px 10px rgba(199,137,61,0.30);}
+    50%{ transform: scale(1.12); box-shadow: 0 0 60px 18px rgba(199,137,61,0.45);}
+  }
+  .ritual h2{ margin-bottom: 22px;}
+  .ritual p{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--brown);
+    max-width: 560px;
+    margin: 0 auto 20px;
+  }
+  .ritual p:last-of-type{margin-bottom:0;}
+  .ritual em{
+    font-style: italic;
+    color: var(--deep-gold);
+  }
+
+  /* WHAT TO EXPECT */
+  .expect p{
+    font-size: 17px;
+    color: var(--brown-soft);
+    text-align:center;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* CLOSING */
+  .closing{
+    text-align:center;
+    margin-top: 80px;
+  }
+  .closing p.msg{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--brown);
+    margin-bottom: 28px;
+  }
+  .sig{
+    font-family:'Cinzel', serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: var(--deep-gold);
+  }
+  .sig-sub{
+    font-family:'Jost', sans-serif;
+    font-size: 13px;
+    color: var(--brown-soft);
+    letter-spacing: 0.04em;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 480px){
+    .hero{ padding: 70px 20px 60px; }
+    .hero-glow{ width: 320px; height:320px; }
+    .ritual{ padding: 40px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <svg class="glyph" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 8C22 12 18 22 22 32C26 42 22 50 14 54C26 56 38 48 40 36C42 24 36 14 32 8Z" fill="#C7893D" opacity="0.85"/>
+      <circle cx="32" cy="34" r="4" fill="#9C6B2E"/>
+      <circle cx="24" cy="40" r="2.4" fill="#C7893D" opacity="0.7"/>
+      <circle cx="40" cy="40" r="2.4" fill="#C7893D" opacity="0.7"/>
+    </svg>
+    <div class="eyebrow">Before we begin</div>
+    <h1>Preparing for Your Session</h1>
+    <p>A few gentle steps to help you arrive, open, and receive — in your own space, in your own time.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="divider"><span>Getting Ready</span></div>
+
+  <div class="prep-list">
+    <div class="prep-item">
+      <div class="prep-icon">🌿</div>
+      <div>
+        <strong>Find a quiet, comfortable space</strong>
+        <span class="desc">Somewhere you won't be disturbed for the full session. Lying down or sitting comfortably both work well.</span>
+      </div>
+    </div>
+    <div class="prep-item">
+      <div class="prep-icon">📵</div>
+      <div>
+        <strong>Silence your phone and minimise distractions</strong>
+        <span class="desc">This time is for you to fully relax and receive.</span>
+      </div>
+    </div>
+    <div class="prep-item">
+      <div class="prep-icon">💧</div>
+      <div>
+        <strong>Drink a glass of water beforehand</strong>
+        <span class="desc">This supports your body as it processes the energy shift.</span>
+      </div>
+    </div>
+    <div class="prep-item">
+      <div class="prep-icon">🕯️</div>
+      <div>
+        <strong>Set an intention</strong>
+        <span class="desc">Optional but powerful. Think about what you'd like support with — you don't need to share it unless you'd like to.</span>
+      </div>
+    </div>
+    <div class="prep-item">
+      <div class="prep-icon">🧘</div>
+      <div>
+        <strong>Get comfortable</strong>
+        <span class="desc">Cosy clothing, a blanket, dim lighting, or calming music can all help you settle in.</span>
+      </div>
+    </div>
+    <div class="prep-item">
+      <div class="prep-icon">📓</div>
+      <div>
+        <strong>Have a notebook nearby</strong>
+        <span class="desc">Some clients like to jot down thoughts, feelings, or insights that arise during or after the session.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ritual">
+    <div class="ritual-orb"></div>
+    <h2>Opening to Receive</h2>
+    <p>It's important to open your energy so you can receive the maximum amount of flow. Visualise, feel, or sense roots growing down from you into the earth, your crown chakra opening at the top of your head, and a ball of light surrounding you — white, gold, or whatever colour feels good to you — expanding outward, ready to receive love and higher energy.</p>
+    <p><em>Curiosity is key.</em> It's best to enter the session with no expectations. Trust that whatever you need in the moment will be given to you. Our limited human perception can never fully comprehend all that we are and all that we need — the energy is intelligent, filled with unconditional love, acceptance, and awe for all that you are. Trust it.</p>
+    <p>Let any sensations happen in the body without judgement — it's simply the energy moving, and it's always for your highest good. If something feels uncomfortable, it doesn't mean anything is wrong — it may just be a blockage shifting. The more open you can be, the better your experience will be.</p>
+    <p>Your mind might try to get involved, analysing what you're feeling. When this happens, simply step out of the way — take a deep inhale, and exhale the breath, and the energy, down through your body to your feet, keeping your focus there. This will reground you — you'll see 😉</p>
+  </div>
+
+  <div class="divider"><span>What to Expect</span></div>
+
+  <div class="expect">
+    <p>At the time of our session, simply relax in your space and allow. I'll be sending Reiki energy to you remotely — you may feel warmth, tingling, emotional release, or deep relaxation. Everyone experiences it differently, so let go of expectation and just allow whatever comes.</p>
+  </div>
+
+  <div class="closing">
+    <p class="msg">If you have any questions before our session, I'm here for you.</p>
+    <div class="sig">With love and light, Tamsin</div>
+    <div class="sig-sub">MOONBLOOM REIKI HEALING</div>
+  </div>
+
+</div>
+
+</body>
+</html>
