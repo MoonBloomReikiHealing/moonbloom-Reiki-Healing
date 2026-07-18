@@ -1,0 +1,106 @@
+.pricing-region-note {
+  margin-top: 0.75rem;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.whatsapp-contact {
+  position: fixed;
+  right: 1.35rem;
+  bottom: 1.35rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #332942;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-prompt {
+  position: relative;
+  padding: 0.72rem 0.95rem;
+  border: 1px solid rgba(157, 135, 212, 0.34);
+  border-radius: 1rem;
+  background: #fffaf4;
+  box-shadow: 0 12px 34px rgba(20, 17, 32, 0.18);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.whatsapp-prompt::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -0.36rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-top: 1px solid rgba(157, 135, 212, 0.34);
+  border-right: 1px solid rgba(157, 135, 212, 0.34);
+  background: #fffaf4;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.whatsapp-icon {
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border: 1px solid rgba(253, 248, 244, 0.42);
+  border-radius: 50%;
+  background: #526d61;
+  box-shadow: 0 14px 38px rgba(20, 17, 32, 0.26);
+  color: #fffaf4;
+  flex: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-icon svg {
+  width: 1.65rem;
+  height: 1.65rem;
+  fill: currentColor;
+}
+
+.whatsapp-contact:hover,
+.whatsapp-contact:focus-visible {
+  color: #332942;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.whatsapp-contact:hover .whatsapp-icon,
+.whatsapp-contact:focus-visible .whatsapp-icon {
+  background: #425c51;
+  box-shadow: 0 17px 44px rgba(20, 17, 32, 0.32);
+}
+
+.whatsapp-contact:focus-visible {
+  outline: 3px solid rgba(201, 184, 232, 0.75);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .whatsapp-contact {
+    right: 0.9rem;
+    bottom: 0.9rem;
+  }
+
+  .whatsapp-prompt {
+    padding: 0.62rem 0.78rem;
+    font-size: 0.7rem;
+  }
+
+  .whatsapp-icon {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-contact {
+    transition: none;
+  }
+}
