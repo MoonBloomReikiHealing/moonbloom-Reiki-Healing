@@ -998,6 +998,7 @@
     <form class="booking-form" name="booking-request" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="booking-request">
       <input type="hidden" name="subject" data-remove-prefix value="New MoonBloom booking request">
+      <input id="booking-iana-timezone" type="hidden" name="iana-time-zone" value="UTC">
       <p hidden>
         <label>Do not fill this out: <input name="bot-field"></label>
       </p>
@@ -1057,6 +1058,26 @@
   <p>© 2026 MoonBloom Reiki Healing · moonbloomreikihealing@gmail.com</p>
   <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">Distance Reiki is a complementary practice and does not replace medical treatment.</p>
 </footer>
+
+<script>
+  const bookingDate = document.getElementById('booking-date');
+  const bookingTimeZone = document.getElementById('booking-timezone');
+  const bookingIanaTimeZone = document.getElementById('booking-iana-timezone');
+
+  if (bookingDate) {
+    const today = new Date();
+    const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    bookingDate.min = localDate;
+  }
+
+  if (bookingTimeZone && bookingIanaTimeZone) {
+    const detectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (detectedTimeZone) {
+      bookingIanaTimeZone.value = detectedTimeZone;
+      if (!bookingTimeZone.value) bookingTimeZone.value = detectedTimeZone.replaceAll('_', ' ');
+    }
+  }
+</script>
 
 </body>
 </html>

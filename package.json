@@ -1,0 +1,22 @@
+{
+  "name": "moonbloom-bookings",
+  "version": "1.0.0",
+  "description": "MoonBloom Reiki Healing booking workflow",
+  "scripts": {
+    "check": "tsc",
+    "db:generate": "drizzle-kit generate"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "@netlify/database": "^1.1.0",
+    "drizzle-orm": "^1.0.0-beta.22"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^5.3.0",
+    "@types/node": "^26.1.1",
+    "drizzle-kit": "^1.0.0-beta.22",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
