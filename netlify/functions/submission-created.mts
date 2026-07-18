@@ -1,17 +1,10 @@
-import type { Context } from "@netlify/functions";
+import type { FormSubmittedEvent } from "@netlify/functions";
 import { eq } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { bookings } from "../../db/schema.js";
 import { requireEnv } from "./_lib/config.mjs";
-import { ownerBookingEmail, sendEmail } from "./_lib/email.mjs";
+import { ownerBookingEmail, ownerBookingText, sendEmail } from "./_lib/email.mjs";
 import { createBookingToken, sha256 } from "./_lib/security.mjs";
-
-interface FormPayload {
-  id?: string;
-  form_name: string;
-  data: Record<string, string>;
-  created_at: string;
-}
 
 function parsedTimeZone(value: string | undefined): string | undefined {
   if (!value) return undefined;
@@ -24,25 +17,27 @@ function parsedTimeZone(value: string | undefined): string | undefined {
   }
 }
 
-export default async (req: Request, context: Context) => {
-  const { payload } = await req.json() as { payload: FormPayload };
+export const formSubmitted = async (event: FormSubmittedEvent) => {
+  const data = event.data;
 
-  if (payload.form_name !== "booking-request") {
-    return new Response("Ignored", { status: 200 });
+  if (data["form-name"] !== "booking-request") {
+    return;
   }
 
-  const data = payload.data;
   const requiredFields = ["name", "email", "session", "preferred-date", "preferred-time"];
 
   if (requiredFields.some((field) => !data[field]?.trim())) {
-    return new Response("Invalid booking submission", { status: 400 });
+    throw new Error("Invalid booking submission");
   }
 
-  const sourceSubmissionId = payload.id || await sha256([
-    payload.created_at,
+  const sourceSubmissionId = await sha256([
+    data.name,
     data.email,
+    data.session,
     data["preferred-date"],
     data["preferred-time"],
+    data["time-zone"],
+    data.message,
   ].join("|"));
   const token = await createBookingToken(sourceSubmissionId, requireEnv("BOOKING_ACTION_SECRET"));
   const tokenHash = await sha256(token);
@@ -67,34 +62,36 @@ export default async (req: Request, context: Context) => {
   const [booking] = await db.select().from(bookings).where(eq(bookings.sourceSubmissionId, sourceSubmissionId)).limit(1);
 
   if (!booking || booking.ownerNotificationSentAt) {
-    return new Response("OK");
+    return;
   }
 
-  const siteUrl = context.site.url || requireEnv("URL");
+  const siteUrl = requireEnv("URL");
   const actionUrl = new URL("/booking/respond", siteUrl);
   actionUrl.searchParams.set("token", token);
   actionUrl.searchParams.set("decision", "confirm");
   const confirmUrl = actionUrl.toString();
   actionUrl.searchParams.set("decision", "decline");
+  const declineUrl = actionUrl.toString();
+  const emailContent = {
+    name: booking.customerName,
+    email: booking.customerEmail,
+    session: booking.sessionName,
+    date: booking.preferredDate,
+    time: booking.preferredTime,
+    timeZone: booking.customerTimeZone,
+    timeZoneLabel: booking.customerTimeZoneLabel || booking.customerTimeZone,
+    message: booking.message,
+    confirmUrl,
+    declineUrl,
+  };
 
   await sendEmail({
     to: requireEnv("BOOKING_OWNER_EMAIL"),
     subject: `Booking request from ${booking.customerName}`,
     replyTo: booking.customerEmail,
-    html: ownerBookingEmail({
-      name: booking.customerName,
-      email: booking.customerEmail,
-      session: booking.sessionName,
-      date: booking.preferredDate,
-      time: booking.preferredTime,
-      timeZone: booking.customerTimeZone,
-      timeZoneLabel: booking.customerTimeZoneLabel || booking.customerTimeZone,
-      message: booking.message,
-      confirmUrl,
-      declineUrl: actionUrl.toString(),
-    }),
+    html: ownerBookingEmail(emailContent),
+    text: ownerBookingText(emailContent),
   });
 
   await db.update(bookings).set({ ownerNotificationSentAt: new Date(), updatedAt: new Date() }).where(eq(bookings.id, booking.id));
-  return new Response("OK");
 };

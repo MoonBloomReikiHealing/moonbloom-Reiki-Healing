@@ -5,7 +5,7 @@ Static Netlify site with a managed booking approval workflow.
 ## Booking workflow
 
 1. A client submits the `booking-request` Netlify Form.
-2. The `submission-created` function stores the request in Netlify Database and sends the owner a private email with review links.
+2. The `submission-created` function stores the request in Netlify Database and sends the owner a private email with confirm, decline, and direct client-email actions.
 3. Confirm and decline links open a final review page so automated email scanners cannot accidentally change a booking.
 4. Confirming creates the session in Google Calendar and emails the client. Declining emails the client that the requested time is unavailable.
 
