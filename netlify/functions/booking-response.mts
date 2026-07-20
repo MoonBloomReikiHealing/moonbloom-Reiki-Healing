@@ -41,6 +41,26 @@ function bookingDetails(booking: Booking): string {
   return `<div class="details"><p><strong>${escapeHtml(booking.customerName)}</strong></p><p>${escapeHtml(booking.sessionName)}</p><p>${escapeHtml(booking.preferredDate)} at ${escapeHtml(booking.preferredTime)}</p><p>${escapeHtml(booking.customerTimeZoneLabel || booking.customerTimeZone)} (${escapeHtml(booking.customerTimeZone)})</p></div>`;
 }
 
+function formattedBookingDate(date: string): string {
+  return new Intl.DateTimeFormat("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T12:00:00Z`));
+}
+
+function formattedBookingTime(time: string): string {
+  const [hours, minutes] = time.split(":").map(Number);
+  return new Intl.DateTimeFormat("en-GB", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(2000, 0, 1, hours, minutes)));
+}
+
 function completedPage(booking: Booking): Response {
   if (booking.status === "confirmed") {
     return page("Booking confirmed", `<p class="eyebrow">MoonBloom booking</p><h1>Session confirmed</h1>${bookingDetails(booking)}<p>The session is in your Google Calendar and the client has been notified.</p>`);
@@ -130,13 +150,14 @@ export default async (req: Request, context: Context) => {
   }
 
   try {
-    const eventId = await createCalendarEvent(confirming);
+    const calendarEvent = await createCalendarEvent(confirming);
     const confirmationDetails = {
       name: confirming.customerName,
       session: confirming.sessionName,
-      date: confirming.preferredDate,
-      time: confirming.preferredTime,
+      date: formattedBookingDate(confirming.preferredDate),
+      time: formattedBookingTime(confirming.preferredTime),
       timeZone: confirming.customerTimeZoneLabel || confirming.customerTimeZone,
+      meetingUrl: calendarEvent.meetingUrl,
     };
 
     await sendEmail({
@@ -149,7 +170,7 @@ export default async (req: Request, context: Context) => {
 
     const [confirmed] = await db.update(bookings).set({
       status: "confirmed",
-      calendarEventId: eventId,
+      calendarEventId: calendarEvent.eventId,
       respondedAt: new Date(),
       updatedAt: new Date(),
     }).where(and(eq(bookings.id, confirming.id), eq(bookings.status, "confirming"))).returning();

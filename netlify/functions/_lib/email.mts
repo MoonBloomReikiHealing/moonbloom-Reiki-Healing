@@ -113,6 +113,7 @@ interface CustomerBookingDetails {
   date: string;
   time: string;
   timeZone: string;
+  meetingUrl: string;
 }
 
 function customerEmailShell(title: string, content: string): string {
@@ -133,13 +134,14 @@ export function customerConfirmationEmail(input: CustomerBookingDetails): string
   const listItemStyle = "margin:0 0 12px;line-height:1.65";
 
   return customerEmailShell("Your MoonBloom Reiki Session is Confirmed 🌙", `
-    <p style="${paragraphStyle}">Hello ${escapeHtml(input.name)},</p>
-    <p style="${paragraphStyle}">Thank you for your booking! I'm so glad you're here, and I look forward to connecting with you for your distance Reiki session.</p>
-    <div style="margin:24px 0;padding:18px 20px;border-radius:14px;background:#f3edf7">
-      <p style="margin:0 0 6px"><strong>${escapeHtml(input.session)}</strong></p>
-      <p style="margin:0;line-height:1.6">${escapeHtml(input.date)} at ${escapeHtml(input.time)} (${escapeHtml(input.timeZone)})</p>
+    <p style="${paragraphStyle}">Hi ${escapeHtml(input.name)},</p>
+    <p style="${paragraphStyle}">Thank you for your booking! I'm so glad you're here, and I look forward to connecting with you for your distance Reiki session on ${escapeHtml(input.date)} at ${escapeHtml(input.time)} (${escapeHtml(input.timeZone)}).</p>
+    <div style="margin:24px 0;padding:20px;border-radius:14px;background:#f3edf7;text-align:center">
+      <p style="margin:0 0 14px;line-height:1.6"><strong>${escapeHtml(input.session)}</strong><br>Your Google Meet room is ready for the confirmed session.</p>
+      <a href="${escapeHtml(input.meetingUrl)}" style="display:inline-block;padding:13px 22px;border-radius:999px;background:#8069a8;color:#fff;text-decoration:none;font-weight:bold">Join Google Meet</a>
+      <p style="margin:14px 0 0;font-size:12px;line-height:1.5"><a href="${escapeHtml(input.meetingUrl)}" style="color:#675080">${escapeHtml(input.meetingUrl)}</a></p>
     </div>
-    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:23px;font-weight:normal">A few things to prepare before our session:</h2>
+    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:20px;font-weight:bold;letter-spacing:1px">A FEW THINGS TO PREPARE BEFORE OUR SESSION:</h2>
     <ul style="margin:0 0 24px;padding-left:24px">
       <li style="${listItemStyle}">🌿 <strong>Find a quiet, comfortable space</strong> — somewhere you won't be disturbed for the full session. Lying down or sitting comfortably both work well.</li>
       <li style="${listItemStyle}">📵 <strong>Silence your phone and minimise distractions</strong> — this time is for you to fully relax and receive.</li>
@@ -148,27 +150,27 @@ export function customerConfirmationEmail(input: CustomerBookingDetails): string
       <li style="${listItemStyle}">🧘 <strong>Get comfortable</strong> — cosy clothing, a blanket, dim lighting, or calming music can all help you settle in.</li>
       <li style="${listItemStyle}">📓 <strong>Have a notebook nearby</strong> — some clients like to jot down thoughts, feelings, or insights that arise during or after the session.</li>
     </ul>
-    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:23px;font-weight:normal">Opening yourself to receive:</h2>
+    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:20px;font-weight:bold;letter-spacing:1px">OPENING YOURSELF TO RECEIVE:</h2>
     <p style="${paragraphStyle}">It's important to open your energy so you can receive the maximum amount of flow. Visualise, feel, or sense roots growing down from you into the earth, your crown chakra opening at the top of your head, and a ball of light surrounding you — white, gold, or whatever colour feels good to you — expanding outward, ready to receive love and higher energy.</p>
     <p style="${paragraphStyle}">Curiosity is key. It's best to enter the session with no expectations. Trust that whatever you need in the moment will be given to you. Our limited human perception can never fully comprehend all that we are and all that we need — the energy is intelligent, filled with unconditional love, acceptance, and awe for all that you are. Trust it.</p>
     <p style="${paragraphStyle}">Let any sensations happen in the body without judgement — it's simply the energy moving, and it's always for your highest good. If something feels uncomfortable, it doesn't mean anything is wrong — it may just be a blockage shifting. The more open you can be, the better your experience will be.</p>
     <p style="${paragraphStyle}">Your mind might try to get involved, analysing or making sense of what you're feeling. When this happens, simply step out of the way — take a deep inhale, and exhale the breath (and the energy) down through your body to your feet, keeping your focus there. This will reground you — you'll see 😉</p>
-    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:23px;font-weight:normal">What to expect:</h2>
+    <h2 style="margin:30px 0 14px;font-family:Georgia,serif;font-size:20px;font-weight:bold;letter-spacing:1px">WHAT TO EXPECT:</h2>
     <p style="${paragraphStyle}">At the time of our session, simply relax in your space and allow. I'll be sending Reiki energy to you remotely — you may feel warmth, tingling, emotional release, or deep relaxation. Everyone experiences it differently, so let go of expectation and just allow whatever comes.</p>
     <p style="${paragraphStyle}">If you have any questions before our session, feel free to reply to this message. I'm here for you 💛</p>
-    <p style="margin:28px 0 0;line-height:1.7">With love and light,<br><strong>Tamsin</strong><br>MoonBloom Reiki Healing</p>
+    <p style="margin:28px 0 0;line-height:1.7">With love and light,<br><strong>Tamsin</strong><br>MoonBloom Reiki Healing<br><a href="https://moonbloomhealing.co.uk" style="color:#675080">moonbloomhealing.co.uk</a></p>
   `);
 }
 
 export function customerConfirmationText(input: CustomerBookingDetails): string {
-  return `Hello ${input.name},
+  return `Hi ${input.name},
 
-Thank you for your booking! I'm so glad you're here, and I look forward to connecting with you for your distance Reiki session.
+Thank you for your booking! I'm so glad you're here, and I look forward to connecting with you for your distance Reiki session on ${input.date} at ${input.time} (${input.timeZone}).
 
 ${input.session}
-${input.date} at ${input.time} (${input.timeZone})
+Google Meet: ${input.meetingUrl}
 
-A few things to prepare before our session:
+A FEW THINGS TO PREPARE BEFORE OUR SESSION:
 
 🌿 Find a quiet, comfortable space — somewhere you won't be disturbed for the full session. Lying down or sitting comfortably both work well.
 📵 Silence your phone and minimise distractions — this time is for you to fully relax and receive.
@@ -177,7 +179,7 @@ A few things to prepare before our session:
 🧘 Get comfortable — cosy clothing, a blanket, dim lighting, or calming music can all help you settle in.
 📓 Have a notebook nearby — some clients like to jot down thoughts, feelings, or insights that arise during or after the session.
 
-Opening yourself to receive:
+OPENING YOURSELF TO RECEIVE:
 
 It's important to open your energy so you can receive the maximum amount of flow. Visualise, feel, or sense roots growing down from you into the earth, your crown chakra opening at the top of your head, and a ball of light surrounding you — white, gold, or whatever colour feels good to you — expanding outward, ready to receive love and higher energy.
 
@@ -187,7 +189,7 @@ Let any sensations happen in the body without judgement — it's simply the ener
 
 Your mind might try to get involved, analysing or making sense of what you're feeling. When this happens, simply step out of the way — take a deep inhale, and exhale the breath (and the energy) down through your body to your feet, keeping your focus there. This will reground you — you'll see 😉
 
-What to expect:
+WHAT TO EXPECT:
 
 At the time of our session, simply relax in your space and allow. I'll be sending Reiki energy to you remotely — you may feel warmth, tingling, emotional release, or deep relaxation. Everyone experiences it differently, so let go of expectation and just allow whatever comes.
 
@@ -195,7 +197,8 @@ If you have any questions before our session, feel free to reply to this message
 
 With love and light,
 Tamsin
-MoonBloom Reiki Healing`;
+MoonBloom Reiki Healing
+moonbloomhealing.co.uk`;
 }
 
 export function customerDeclineEmail(name: string): string {
