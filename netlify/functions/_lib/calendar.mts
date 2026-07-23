@@ -78,19 +78,78 @@ function addMinutes(localDateTime: string, minutes: number): string {
   return date.toISOString().slice(0, 19);
 }
 
+interface CalendarEventResponse {
+  id?: string;
+  hangoutLink?: string;
+  conferenceData?: {
+    entryPoints?: Array<{
+      entryPointType?: string;
+      uri?: string;
+    }>;
+    createRequest?: {
+      status?: {
+        statusCode?: string;
+      };
+    };
+  };
+}
+
+export interface CreatedCalendarEvent {
+  eventId: string;
+  meetingUrl: string;
+}
+
 async function calendarEventId(bookingId: string): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-256", encoder.encode(bookingId));
   return `moonbloom${Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("")}`;
 }
 
-export async function createCalendarEvent(booking: Booking): Promise<string> {
+function meetingUrl(event: CalendarEventResponse): string | undefined {
+  return event.hangoutLink || event.conferenceData?.entryPoints?.find((entryPoint) => entryPoint.entryPointType === "video")?.uri;
+}
+
+async function getCalendarEvent(calendarId: string, eventId: string, accessToken: string): Promise<CalendarEventResponse> {
+  const response = await fetch(
+    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(eventId)}`,
+    { headers: { Authorization: `Bearer ${accessToken}` } },
+  );
+
+  if (!response.ok) {
+    throw new Error(`Google Calendar event lookup returned ${response.status}`);
+  }
+
+  return response.json() as Promise<CalendarEventResponse>;
+}
+
+async function waitForMeetingUrl(calendarId: string, eventId: string, accessToken: string, initialEvent?: CalendarEventResponse): Promise<string> {
+  let event = initialEvent;
+
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    if (!event || attempt > 0) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      event = await getCalendarEvent(calendarId, eventId, accessToken);
+    }
+
+    const url = meetingUrl(event);
+
+    if (url) return url;
+
+    if (event.conferenceData?.createRequest?.status?.statusCode === "failure") {
+      throw new Error("Google Calendar could not create a Google Meet conference");
+    }
+  }
+
+  throw new Error("Google Meet link was not ready in time");
+}
+
+export async function createCalendarEvent(booking: Booking): Promise<CreatedCalendarEvent> {
   const calendarId = requireEnv("GOOGLE_CALENDAR_ID");
   const accessToken = await googleAccessToken();
   const eventId = await calendarEventId(booking.id);
   const start = `${booking.preferredDate}T${booking.preferredTime}:00`;
   const end = addMinutes(start, sessionDurationMinutes(booking.sessionName));
   const response = await fetch(
-    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=none`,
+    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=none&conferenceDataVersion=1`,
     {
       method: "POST",
       headers: {
@@ -107,13 +166,26 @@ export async function createCalendarEvent(booking: Booking): Promise<string> {
         ].filter(Boolean).join("\n"),
         start: { dateTime: start, timeZone: booking.customerTimeZone },
         end: { dateTime: end, timeZone: booking.customerTimeZone },
+        conferenceData: {
+          createRequest: {
+            requestId: `meet${eventId}`,
+            conferenceSolutionKey: { type: "hangoutsMeet" },
+          },
+        },
       }),
     },
   );
 
-  if (response.status !== 409 && !response.ok) {
+  if (response.status === 409) {
+    const meetingUrl = await waitForMeetingUrl(calendarId, eventId, accessToken);
+    return { eventId, meetingUrl };
+  }
+
+  if (!response.ok) {
     throw new Error(`Google Calendar returned ${response.status}`);
   }
 
-  return eventId;
+  const event = await response.json() as CalendarEventResponse;
+  const meetingUrl = await waitForMeetingUrl(calendarId, eventId, accessToken, event);
+  return { eventId, meetingUrl };
 }
